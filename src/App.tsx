@@ -1,26 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component, useState, useEffect } from 'react';
 import './App.css';
+import Test1 from './test1';
 
-class App extends Component {
+export const HihiContext = React.createContext({ gender: 'female' });
+
+class App extends Component<any, any> {
+  constructor(props: any) {
+    super(props);
+    this.state = { name: 'me', a: 4, b: 3 };
+    this.myinterval();
+  }
+
+  myinterval() {
+    const hello = ['a', 'b'];
+    const a = setInterval(() => {
+      const rnd = Math.floor((Math.random() * 100) % 2);
+      this.setState({ name: hello[rnd] });
+    }, 2000);
+    setTimeout(() => {
+      this.setState({ b: 55 });
+      clearInterval(a);
+    }, 5000);
+  }
+
   render() {
+    const a = { gender: 'maloke' };
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <HihiContext.Provider value={a}>
+        <div className="App">
+          <Test1 />
+          {/* <Test2 name={this.state.name} b={this.state.b} /> */}
+        </div>
+      </HihiContext.Provider>
     );
   }
 }
