@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Test1 from './test1';
 
@@ -11,6 +11,7 @@ class App extends Component<any, any> {
     this.myinterval();
   }
 
+  // test
   myinterval() {
     const hello = ['a', 'b'];
     const a = setInterval(() => {
